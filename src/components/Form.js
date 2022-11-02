@@ -6,13 +6,13 @@ const Form = (schema) => {
   return (
     <>
       <form>
-        {schema.data.map((item) => {
+        {schema.data.map((item, id) => {
           if (item.tag === "div") {
-            return <div>{item.text}</div>;
+            return <div key={id}>{item.text}</div>;
           } else if (item.tag === "p") {
-            return <p>{item.text}</p>;
+            return <p key={id}>{item.text}</p>;
           } else if (item.tag === "h1") {
-            return <h1>{item.text}</h1>;
+            return <h1 key={id}>{item.text}</h1>;
           } else {
             return <>loading...</>;
           }
