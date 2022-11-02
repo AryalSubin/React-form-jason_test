@@ -2,32 +2,32 @@ import "./App.css";
 import Form from "./components/Form";
 
 function App() {
-  const schema = `{
-    "title": "Person",
-    "type": "object",
-    "properties": {
-      "name": {
-        "type": "string"
+  const schema = {
+    type: "object",
+    properties: {
+      employees: {
+        type: "array",
+        items: [
+          {
+            type: "object",
+            properties: {
+              name: {
+                type: "string",
+              },
+              email: {
+                type: "email",
+              },
+            },
+            required: ["name", "email"],
+          },
+        ],
       },
-      "age": {
-        "type": "number",
-        "minimum": 10,
-        "maximum": 100
-      },
-      "married": {
-        "type": "checkbox",
-        "default": false
-      }
     },
-    "required": [
-      "name",
-      "age",
-      "married"
-    ]
-  }`;
+    required: ["employees"],
+  };
   return (
     <div className="App">
-      <Form data={JSON.parse(schema)} />
+      <Form data={schema} />
     </div>
   );
 }
