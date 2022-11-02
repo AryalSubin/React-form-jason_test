@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Form from "./components/Form";
 
 function App() {
+  const schema = `{
+    "title": "Person",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "age": {
+        "type": "number",
+        "minimum": 10,
+        "maximum": 100
+      },
+      "married": {
+        "type": "checkbox",
+        "default": false
+      }
+    },
+    "required": [
+      "name",
+      "age",
+      "married"
+    ]
+  }`;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form data={JSON.parse(schema)} />
     </div>
   );
 }
